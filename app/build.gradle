@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -35,7 +36,7 @@ dependencies {
 
     //Dagger 2 DI
     implementation "com.google.dagger:dagger:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -49,6 +50,9 @@ dependencies {
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    //Timber logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
