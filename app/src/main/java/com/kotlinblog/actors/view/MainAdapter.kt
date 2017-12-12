@@ -17,9 +17,9 @@ class MainAdapter(private var viewModel: MainViewModel,
         viewModel.getActorAt(position)?.let {
             Picasso.with(context).load(it.image).into(holder.picture)
             holder.actorName.text = it.name
-            holder.country.text = it.country
-            holder.dob.text = it.dob
-            holder.height.text = it.height
+            holder.country.text = context.getString(R.string.from, it.country)
+            holder.dob.text = context.getString(R.string.born, it.dob)
+            holder.height.text = context.getString(R.string.height, it.height)
             holder.description.text = it.description
         }
     }
@@ -31,7 +31,6 @@ class MainAdapter(private var viewModel: MainViewModel,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.actor_item, parent, false))
     }
-
 
     class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val picture by lazy { view.findViewById<ImageView>(R.id.ivActorImage) as ImageView }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Actors</string>
+    <string name="from">From: %1$s</string>
+    <string name="born">Born: %1$s</string>
+    <string name="height">Height: %1$s</string>
+    <string name="actor_image_desc">Famous actor\'s picture</string>
 </resources>
