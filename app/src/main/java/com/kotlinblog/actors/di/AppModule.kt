@@ -2,8 +2,7 @@ package com.kotlinblog.actors.di
 
 import android.app.Application
 import com.kotlinblog.actors.BuildConfig
-import com.kotlinblog.actors.data.AppRepository
-import com.kotlinblog.actors.data.rest.ApiConstants
+import com.kotlinblog.actors.data.ApiConstants
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -20,12 +19,6 @@ class AppModule(private val mApplication: Application) {
     @Singleton
     internal fun providesApplication(): Application {
         return mApplication
-    }
-
-    @Provides
-    @Singleton
-    internal fun providesRepository(): AppRepository {
-        return AppRepository()
     }
 
     @Provides

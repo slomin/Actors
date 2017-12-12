@@ -1,4 +1,4 @@
-package com.kotlinblog.actors.data.rest
+package com.kotlinblog.actors.data
 
 import com.google.gson.annotations.SerializedName
 

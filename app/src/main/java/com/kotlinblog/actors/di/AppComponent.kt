@@ -1,6 +1,5 @@
 package com.kotlinblog.actors.di
 
-import com.kotlinblog.actors.data.AppRepository
 import com.kotlinblog.actors.view.MainViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -9,5 +8,4 @@ import javax.inject.Singleton
 @Component(modules = [(AppModule::class)])
 interface AppComponent {
     fun inject(viewModel: MainViewModel)
-    fun inject(repository: AppRepository)
 }
