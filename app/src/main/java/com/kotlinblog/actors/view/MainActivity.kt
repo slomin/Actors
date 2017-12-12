@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.kotlinblog.actors.R
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
@@ -33,7 +34,9 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(divider)
         }
 
-        mViewModel.fetchActors()
+        if (savedInstanceState == null) {
+            mViewModel.fetchActors()
+        }
         observeActors()
     }
 
@@ -42,5 +45,13 @@ class MainActivity : AppCompatActivity() {
             mAdapter.notifyDataSetChanged()
             Timber.d("Actors changed...")
         })
+
+        mViewModel.connectionError.observe(this,
+                Observer {
+                    Toast.makeText(this@MainActivity,
+                            "Connection error: $it",
+                            Toast.LENGTH_LONG)
+                            .show()
+                })
     }
 }

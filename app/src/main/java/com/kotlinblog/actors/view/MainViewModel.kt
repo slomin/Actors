@@ -7,6 +7,7 @@ import com.kotlinblog.actors.App
 import com.kotlinblog.actors.data.Actor
 import com.kotlinblog.actors.data.ActorsList
 import com.kotlinblog.actors.data.Api
+import com.kotlinblog.actors.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,11 +22,15 @@ class MainViewModel : ViewModel() {
     private var mActors: MutableLiveData<ActorsList>
     val actors: LiveData<ActorsList> get() = mActors
 
+    private var mConnectionError: SingleLiveEvent<String>
+    val connectionError: SingleLiveEvent<String> get() = mConnectionError
+
     private val mCompositeDisposable = CompositeDisposable()
 
     init {
         App.component.inject(this)
         mActors = MutableLiveData()
+        mConnectionError = SingleLiveEvent()
     }
 
     fun fetchActors() {
@@ -35,12 +40,10 @@ class MainViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     mActors.postValue(response)
-//                    for (actor in response.actors) {
-//                        Timber.d(actor.toString())
-//                    }
                 }, {
                     error ->
                     Timber.e(error.message)
+                    connectionError.postValue(error.message)
                 }))
     }
 
