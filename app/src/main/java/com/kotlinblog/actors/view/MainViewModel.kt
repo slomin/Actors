@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
     private val mCompositeDisposable = CompositeDisposable()
 
     init {
-        App.component.inject(this)
+        App.getComponent().inject(this)
         mActors = MutableLiveData()
         mConnectionError = SingleLiveEvent()
     }
