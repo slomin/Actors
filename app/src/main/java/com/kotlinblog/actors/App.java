@@ -7,8 +7,6 @@ import com.kotlinblog.actors.di.AppComponent;
 import com.kotlinblog.actors.di.AppModule;
 import com.kotlinblog.actors.di.DaggerAppComponent;
 
-import org.jetbrains.annotations.NotNull;
-
 import timber.log.Timber;
 
 public class App extends Application {
@@ -34,7 +32,7 @@ public class App extends Application {
             Timber.plant(new Timber.DebugTree() {
                 @NonNull
                 @Override
-                protected String createStackElementTag(@NotNull StackTraceElement element) {
+                protected String createStackElementTag(@NonNull StackTraceElement element) {
                     return "Timber - " + super.createStackElementTag(element) + ":" + element.getLineNumber();
                 }
             });
