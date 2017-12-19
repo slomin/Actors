@@ -20,9 +20,9 @@ import timber.log.Timber;
 public class MainViewModel extends ViewModel {
 
     @Inject Retrofit mRetrofit;
-    private MutableLiveData<ActorsList> mActors = new MutableLiveData<>();
-    private SingleLiveEvent<String> mConnectionError = new SingleLiveEvent<>();
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private final MutableLiveData<ActorsList> mActors = new MutableLiveData<>();
+    private final SingleLiveEvent<String> mConnectionError = new SingleLiveEvent<>();
+    private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public MainViewModel() {
         App.getComponent().inject(this);
@@ -46,11 +46,10 @@ public class MainViewModel extends ViewModel {
         );
     }
 
-    public MutableLiveData<ActorsList> getActors() {
+    MutableLiveData<ActorsList> getActors() {
         return mActors;
     }
-
-    public SingleLiveEvent<String> getConnectionError() {
+    SingleLiveEvent<String> getConnectionError() {
         return mConnectionError;
     }
 
@@ -68,9 +67,7 @@ public class MainViewModel extends ViewModel {
     Actor getActorAt(int position) {
         if (position < getActorsListSize() && mActors.getValue() != null) {
             return mActors
-                    .getValue()
-                    .getActors()
-                    .get(position);
+                    .getValue().actors.get(position);
         } else {
             return null;
         }
@@ -79,9 +76,7 @@ public class MainViewModel extends ViewModel {
     int getActorsListSize() {
         if (mActors.getValue() != null) {
             return mActors
-                    .getValue()
-                    .getActors()
-                    .size();
+                    .getValue().actors.size();
         } else {
             return 0;
         }

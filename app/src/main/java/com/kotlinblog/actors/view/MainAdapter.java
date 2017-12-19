@@ -14,8 +14,8 @@ import com.squareup.picasso.Picasso;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
 
-    private Context mContext;
-    private MainViewModel mViewModel;
+    private final Context mContext;
+    private final MainViewModel mViewModel;
 
     MainAdapter(MainViewModel mViewModel, Context context) {
         this.mViewModel = mViewModel;
@@ -33,12 +33,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public void onBindViewHolder(MainViewHolder holder, int position) {
         Actor actor = mViewModel.getActorAt(position);
         if (actor != null) {
-            Picasso.with(mContext).load(actor.getImage()).into(holder.picture);
-            holder.actorName.setText(actor.getName());
-            holder.country.setText(mContext.getString(R.string.from, actor.getCountry()));
-            holder.dob.setText(mContext.getString(R.string.born, actor.getDob()));
-            holder.height.setText(mContext.getString(R.string.height, actor.getHeight()));
-            holder.description.setText(actor.getDescription());
+            Picasso.with(mContext).load(actor.image).into(holder.picture);
+            holder.actorName.setText(actor.name);
+            holder.country.setText(mContext.getString(R.string.from, actor.country));
+            holder.dob.setText(mContext.getString(R.string.born, actor.dob));
+            holder.height.setText(mContext.getString(R.string.height, actor.height));
+            holder.description.setText(actor.description);
         }
     }
 
@@ -48,12 +48,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     }
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
-        ImageView picture;
-        TextView actorName;
-        TextView country;
-        TextView dob;
-        TextView height;
-        TextView description;
+        final ImageView picture;
+        final TextView actorName;
+        final TextView country;
+        final TextView dob;
+        final TextView height;
+        final TextView description;
 
         MainViewHolder(View itemView) {
             super(itemView);
