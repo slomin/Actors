@@ -1,14 +1,14 @@
 buildscript {
-    ext.support_library_version = '27.0.2'
+    ext.support_library_version = '27.1.0'
     ext.constraint_layout_version = '1.0.2'
-    ext.arch_version = '1.0.0'
+    ext.arch_version = '1.1.0'
     ext.retrofit_version = '2.3.0'
-    ext.okhttp_version = '3.9.1'
-    ext.dagger_version = '2.13'
-    ext.rxandroid_version = '2.0.1'
-    ext.rxjava_version = '2.1.7'
-    ext.picasso_version = '2.5.2'
-    ext.timber_version = '4.6.0'
+    ext.okhttp_version = '3.10.0'
+    ext.dagger_version = '2.15'
+    ext.rxandroid_version = '2.0.2'
+    ext.rxjava_version = '2.1.10'
+    ext.picasso_version = '2.5.2' //using old Picasso version on purpose here
+    ext.timber_version = '4.6.1'
 
     repositories {
         google()
