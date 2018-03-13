@@ -42,14 +42,19 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    //OkHttp3
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    //Picasso 2 OkHttp3 downloader
+    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:$picasso_okhttp_downloader"
 
     //Rx
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-
-    //Picasso
-    implementation "com.squareup.picasso:picasso:$picasso_version"
 
     //Timber logging
     implementation "com.jakewharton.timber:timber:$timber_version"

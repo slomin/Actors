@@ -8,6 +8,7 @@ buildscript {
     ext.rxandroid_version = '2.0.2'
     ext.rxjava_version = '2.1.10'
     ext.picasso_version = '2.5.2' //using old Picasso version on purpose here
+    ext.picasso_okhttp_downloader = '1.1.0'
     ext.timber_version = '4.6.1'
 
     repositories {
