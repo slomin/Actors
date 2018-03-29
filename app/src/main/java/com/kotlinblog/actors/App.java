@@ -1,17 +1,26 @@
 package com.kotlinblog.actors;
 
+import android.app.Activity;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
-import com.kotlinblog.actors.di.AppComponent;
-import com.kotlinblog.actors.di.AppModule;
-import com.kotlinblog.actors.di.DaggerAppComponent;
+import com.kotlinblog.actors.di.ApplicationModule;
+import com.kotlinblog.actors.di.DaggerNetworkComponent;
+import com.kotlinblog.actors.di.NetworkComponent;
+import com.kotlinblog.actors.di.NetworkModule;
+import com.kotlinblog.actors.di.PicassoModule;
+import com.kotlinblog.actors.di.RetrofitModule;
 
 import timber.log.Timber;
 
 public class App extends Application {
 
-    private static AppComponent mComponent;
+    private NetworkComponent mComponent;
+    private NetworkComponent mAnotherComponent;
+
+    public static App get(Activity activity) {
+        return (App) activity.getApplication();
+    }
 
     @Override
     public void onCreate() {
@@ -21,8 +30,16 @@ public class App extends Application {
     }
 
     private void initializeDagger() {
-        mComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
+        mComponent = DaggerNetworkComponent.builder()
+                .applicationModule(new ApplicationModule(this)) // passing ApplicationContext here
+                .networkModule(new NetworkModule())
+                .picassoModule(new PicassoModule())
+                .retrofitModule(new RetrofitModule())
+                .build();
+
+        //TODO another component for the demo purposes
+        mAnotherComponent = DaggerNetworkComponent.builder()
+                .applicationModule(new ApplicationModule(this))
                 .build();
     }
 
@@ -39,7 +56,11 @@ public class App extends Application {
         }
     }
 
-    public static AppComponent getComponent() {
+    public NetworkComponent getComponent() {
         return mComponent;
+    }
+
+    public NetworkComponent getAnotherComponent() {
+        return mAnotherComponent;
     }
 }

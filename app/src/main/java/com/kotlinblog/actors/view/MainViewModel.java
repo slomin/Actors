@@ -1,7 +1,9 @@
 package com.kotlinblog.actors.view;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import android.support.annotation.NonNull;
 
 import com.kotlinblog.actors.App;
 import com.kotlinblog.actors.data.Actor;
@@ -9,23 +11,24 @@ import com.kotlinblog.actors.data.ActorsList;
 import com.kotlinblog.actors.data.Api;
 import com.kotlinblog.actors.utils.SingleLiveEvent;
 
-import javax.inject.Inject;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import timber.log.Timber;
 
-public class MainViewModel extends ViewModel {
+public class MainViewModel extends AndroidViewModel {
 
-    @Inject Retrofit mRetrofit;
+//    @Inject Retrofit mRetrofit;
+    Retrofit mRetrofit;
     private final MutableLiveData<ActorsList> mActors = new MutableLiveData<>();
     private final SingleLiveEvent<String> mConnectionError = new SingleLiveEvent<>();
     private final CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
-    public MainViewModel() {
-        App.getComponent().inject(this);
+    public MainViewModel(@NonNull Application application) {
+        super(application);
+        mRetrofit = ((App) application).getComponent().getRetrofit();
+
     }
 
     void fetchActors() {
